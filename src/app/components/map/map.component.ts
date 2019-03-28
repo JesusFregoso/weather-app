@@ -29,7 +29,6 @@ export class MapComponent implements OnInit {
   }
 
   drawMap(){
-    console.log(this.map);
     var mousePositionControl = new ol.control.MousePosition({
       coordinateFormat: ol.coordinate.createStringXY(4),
       projection: 'EPSG:4326',
@@ -58,12 +57,9 @@ export class MapComponent implements OnInit {
         zoom: 8
       })
     });
-    console.log(ol);
 
     this.map.on('click', function (args) {
-      console.log(args.coordinate);
       var lonlat = ol.proj.transform(args.coordinate, 'EPSG:3857', 'EPSG:4326');
-      console.log(lonlat);
 
       var lon = lonlat[0];
       var lat = lonlat[1];

@@ -12,6 +12,7 @@ import { DatesService } from '../../services/dates.service';
 })
 export class CitiesComponent implements OnInit {
   endDate:any;
+  endDateInput:any;
   startDate:any;
   dates:any = [];
   cities:any = [];
@@ -25,6 +26,7 @@ export class CitiesComponent implements OnInit {
 
   ngOnInit() {
     this.endDate = moment();
+    this.endDateInput = this.endDate.format('YYYY-MM-DD')
     this.startDate = moment().subtract(14,'days');
 
     for (let i = 0; i < 15;i++) {
@@ -34,8 +36,14 @@ export class CitiesComponent implements OnInit {
     this.getCities();
   }
 
-  changeDate() {
-    console.log(this.endDate);
+  changeDate(s) {
+    this.endDate = moment(this.endDateInput)
+    this.startDate = this.endDate.subtract(14,'days');
+
+    for (let i = 0; i < 15;i++) {
+      this.dates[i] = this.addDaysToDate(this.startDate,i);
+    }
+    this._dateService.updateDates(this.dates);
   }
 
   getCities() {
