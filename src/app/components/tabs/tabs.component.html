@@ -1,0 +1,41 @@
+<div id="tabs" #tabs>
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link active" href="#temperature" [ngClass]="{ 'active':activeTab==='temperature'}" (click)="clickMap=false"
+           data-toggle="tab">Temperature</a>
+      </li>
+      <!--<li class="nav-item">
+        <a class="nav-link" href="#maps" [ngClass]="{ 'active':activeTab==='maps'}" data-toggle="tab" (click)="clickMap=true">Maps</a>
+      </li>
+      -->
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane" id="temperature" [ngClass]="{ 'active':activeTab==='temperature'}">
+        <app-graph [city]="city"></app-graph>
+        <div class="row text-center" style="margin-top:50px ">
+            <h5>temperatures</h5>
+            <table class="table table-dark table-sm text-center">
+              <thead>
+                <tr>
+                  <th scope="col">Day</th>
+                  <th scope="col">Celcius</th>
+                  <th scope="col">Fahrenheit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let d of  _dateService.dates; let i=index">
+                  <td scope="row">{{ d | date:'dd/MM/yy'}}</td>
+                  <td *ngIf="_dateService.temperatures[0]">{{_dateService.temperatures[0].data[i] | number}}</td>
+                  <td *ngIf="_dateService.temperatures[1]">{{_dateService.temperatures[1].data[i] | number}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+      <!--<div class="tab-pane" id="maps" [ngClass]="{ 'active':activeTab==='maps'}">
+          <app-map [clicked]="clickMap"></app-map>
+      </div>-->
+    </div>
+
+  </div>

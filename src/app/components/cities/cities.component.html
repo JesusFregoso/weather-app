@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="card text-center" style="width: 20rem;">
+    <div class="card-header">
+        Cities
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="cities">City</label>
+        <select class="form-control" id="cities" (change)="changingValue($event)" [(ngModel)]="cityName" [value]='Obregon'>
+          <option *ngFor="let c of cities;" [value]="c.name">{{c.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label >Date</label>
+        <input type="date" max="3000-12-31" forma
+                min="1000-01-01" class="form-control" [ngModel] ="endDate | date:'yyyy-MM-dd'">
+      </div>
+    </div>
+  </div>
+</div>
